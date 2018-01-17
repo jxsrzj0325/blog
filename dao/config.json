@@ -1,0 +1,10 @@
+{
+    "mysql": {
+        "host": "127.0.0.1",
+        "user": "root",
+        "port": 3306,
+        "password": "",
+        "database": "blog",
+        "charset": "UTF8MB4_GENERAL_CI"
+    }
+}

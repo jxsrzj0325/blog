@@ -1,0 +1,9 @@
+.signin .row {
+  margin-bottom: 10px;
+}
+.signin .row button {
+  width: 150px;
+}
+.signin .row .modal-signin {
+  margin: 200px auto;
+}

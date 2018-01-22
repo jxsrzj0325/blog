@@ -4,8 +4,10 @@ var mysql = require('../../dao/mysqlServer');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log(req.session);
-    res.render('./admin/admin', { 'username': req.session.username });
+    var session = req.session,
+        username = session.username, //登陆用户名
+        isLogined = !!username; //登陆状态
+    res.render('./admin/admin', { 'isLogined': isLogined, 'username': username || '' });
 });
 
 router.post('/signin', function(req, res, next) {
@@ -14,7 +16,7 @@ router.post('/signin', function(req, res, next) {
         if (err) throw err;
         connection.query(sql, function(err, rows, fields) {
             if (err) throw err;
-            var p = new Promise(function(resolve, reject) {
+            new Promise(function(resolve, reject) {
                 rows.forEach(function(elm, index) {
                     if (elm.user_name === req.body.username && elm.user_pwd === req.body.password) {
                         req.session.username = req.body.username;
@@ -22,8 +24,7 @@ router.post('/signin', function(req, res, next) {
                     }
                 });
                 reject();
-            });
-            p.then(function() {
+            }).then(function() {
                 res.send({
                     'status': 200,
                     'msg': '登陆成功',
@@ -36,7 +37,6 @@ router.post('/signin', function(req, res, next) {
                     'session': 0
                 });
             });
-
             connection.release();
         });
     });

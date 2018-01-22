@@ -8,7 +8,7 @@ block styles
 block nav
   .container
     .h1.text-center 后台管理系统
-    - if(username)
+    - if(isLogined)
       .h2.text-center #{username}，欢迎回来!
     - else
       button.center-block(type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg") sign in

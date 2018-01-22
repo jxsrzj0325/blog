@@ -25,8 +25,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    ////这里的name值得是cookie的name，默认cookie的name是：connect.sid
-    //name: 'hhw',
     secret: 'keyboard cat',
     cookie: ('name', 'value', { path: '/', httpOnly: true, secure: false, maxAge: 60000 }),
     //重新保存：强制会话保存即使是未修改的。默认为true但是得写上
@@ -35,6 +33,16 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+// 更新session时间，活动状态不失效
+// use this middleware to reset cookie expiration time 
+// when user hit page every time
+app.use(function(req, res, next) {
+    req.session._garbage = Date();
+    req.session.touch();
+    next();
+});
+
+// 路由中间件
 app.use('/', index);
 app.use('/users', users);
 app.use('/admin', admin);

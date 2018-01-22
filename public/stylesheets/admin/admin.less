@@ -1,4 +1,4 @@
-// @charset 'utf-8';
+@charset 'utf-8';
 .signin{
   .row{
     margin-bottom: 10px;
@@ -10,5 +10,32 @@
     .modal-signin{
       margin: 200px auto;
     }
+  }
+}
+.left-box{
+  border:1px solid black;
+  height: 650px;
+
+  span[class*="left-menu"]{
+    display: block;
+    padding: 10px 20px;
+    border:1px solid black;
+    text-align: center;
+    border-radius: 10px;
+    margin: 10px 0;
+
+    &:hover{
+      background: greenyellow;
+      cursor: pointer;
+    }
+  }
+}
+
+.main{
+  overflow: hidden;
+  .container-fluid{
+    border:1px solid black;
+    height: 650px;
+    padding: 30px;
   }
 }

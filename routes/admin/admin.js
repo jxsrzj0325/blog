@@ -6,8 +6,9 @@ var mysql = require('../../dao/mysqlServer');
 router.get('/', function(req, res, next) {
     var session = req.session,
         username = session.username, //登陆用户名
-        isLogined = !!username; //登陆状态
-    res.render('./admin/admin', { 'isLogined': isLogined, 'username': username || '' });
+        isLogined = !!username, //登陆状态
+        hash = req.query.hash; //锚
+    res.render('./admin/admin', { 'isLogined': isLogined, 'username': username || '', 'hash': hash });
 });
 
 router.post('/signin', function(req, res, next) {

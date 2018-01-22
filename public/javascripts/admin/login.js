@@ -19,12 +19,14 @@
                 data: result,
                 success: function(data) {
                     if (data.session) {
+                        // 登陆成功
                         show.addClass('alert-success').removeClass('alert-danger');
                         show.text('登陆成功.');
                         interval = setInterval(function() {
+                            // 倒计时跳转
                             if (time === 0) {
                                 clearInterval(interval);
-                                window.location.href = window.location.href;
+                                window.location.href = 'admin?hash=index'; //跳转到欢迎页
                             }
                             show.text('登陆成功,' + time-- + '秒后自动跳转...');
                         }, 1000);

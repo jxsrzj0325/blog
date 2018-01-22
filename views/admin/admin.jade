@@ -9,7 +9,19 @@ block nav
   .container
     .h1.text-center 后台管理系统
     - if(isLogined)
-      .h2.text-center #{username}，欢迎回来!
+      .h4.text-right #{username}，
+        a(href="/loginout") 退出
+      .row
+        .col-lg-2.left-box
+          span.left-menu-index 首页
+          span.left-menu-users 用户管理
+          span.left-menu-article 博文管理
+        .col-lg-10.main
+          .container-fluid 
+            case hash
+              when 'index'
+                .h2.text-center #{username},欢迎回来!
+          
     - else
       button.center-block(type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg") sign in
 
@@ -48,3 +60,4 @@ block scripts
   script(src='/javascripts/jquery.min.js')
   script(src='/javascripts/bootstrap.min.js')
   script(src='javascripts/admin/login.js')
+  script(src='javascripts/admin/admin.js')

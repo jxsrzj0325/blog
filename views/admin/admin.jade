@@ -8,9 +8,8 @@ block styles
 block nav
   .container
     .h1.text-center 后台管理系统
-    - var s = false
-    - if(s)
-      .h2.text-center 欢迎使用,#{username}
+    - if(username)
+      .h2.text-center #{username}，欢迎回来!
     - else
       button.center-block(type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg") sign in
 
@@ -38,6 +37,10 @@ block content
           .row
             .col-lg-6.col-lg-offset-3.col-xs-12
               input.btn-signin.btn.btn-success.center-block(type='button' value='sign in')
+          .row
+            .col-lg-6.col-lg-offset-3.col-xs-12
+              .alert.text-center 
+              
 
 
 //- script

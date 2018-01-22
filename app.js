@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -22,6 +23,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+    ////这里的name值得是cookie的name，默认cookie的name是：connect.sid
+    //name: 'hhw',
+    secret: 'keyboard cat',
+    cookie: ('name', 'value', { path: '/', httpOnly: true, secure: false, maxAge: 60000 }),
+    //重新保存：强制会话保存即使是未修改的。默认为true但是得写上
+    resave: true,
+    //强制“未初始化”的会话保存到存储。 
+    saveUninitialized: true,
+}));
 
 app.use('/', index);
 app.use('/users', users);

@@ -9,6 +9,8 @@ var session = require('express-session');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var admin = require('./routes/admin/admin');
+var query = require('./routes/admin/query');
+var search = require('./routes/admin/search');
 
 var app = express();
 
@@ -26,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
     secret: 'keyboard cat',
-    cookie: ('name', 'value', { path: '/', httpOnly: true, secure: false, maxAge: 600000 }),
+    cookie: ('name', 'value', { path: '/', httpOnly: true, secure: false, maxAge: 120000 }),
     //重新保存：强制会话保存即使是未修改的。默认为true但是得写上
     resave: true,
     //强制“未初始化”的会话保存到存储。 
@@ -46,6 +48,8 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/admin', admin);
+app.use('/query', query);
+app.use('/search', search);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

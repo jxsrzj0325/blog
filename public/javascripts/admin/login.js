@@ -8,7 +8,7 @@
         $('.signin').on('click', '.btn-signin', function() {
             var uname = $('#username'),
                 pwd = $('#password'),
-                result = { 'username': uname.val(), 'password': pwd.val() },
+                result = { 'username': uname.val(), 'password': pwd.val(), 'time': new Date().getTime() },
                 show = $('.alert'), //登陆状态提示框
                 time = 3, //倒计时跳转
                 interval; //倒计时计时器
